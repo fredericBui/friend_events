@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activités entre Amis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Activités entre Amis</h1>
+        
+        <div class="header-actions">
+            <button class="btn-add-activity" onclick="openAddModal()">
+                ➕ Ajouter une activité
+            </button>
+        </div>
+
+        <div class="stats" id="stats">
+            <div class="stats-item">Total: <span id="totalCount">0</span></div>
+            <div class="stats-item">À faire: <span id="pendingCount">0</span></div>
+            <div class="stats-item">Terminées: <span id="completedCount">0</span></div>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterActivities('pending')">À faire</button>
+            <button class="filter-btn" onclick="filterActivities('completed')">Terminées</button>
+        </div>
+
+        <div class="activities-list" id="activitiesList">
+            <div class="no-activities">
+                Aucune activité pour le moment. Ajoutez-en une ! 🎉
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter une activité -->
+    <div id="addActivityModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ajouter une nouvelle activité</h3>
+                <button class="close" onclick="closeAddModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="activityTitle">Nom de l'activité</label>
+                    <input type="text" id="activityTitle" placeholder="Ex: Soirée cinéma, Restaurant japonais...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="activityDescription">Description</label>
+                    <textarea id="activityDescription" placeholder="Décrivez l'activité (optionnel)"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="activityAuthor">Proposé par</label>
+                        <input type="text" id="activityAuthor" placeholder="Votre nom">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="activityDate">Date (optionnelle)</label>
+                        <input type="date" id="activityDate">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="activityPhotos">Photos souvenirs 📸</label>
+                    <input type="file" id="activityPhotos" multiple accept="image/*" style="display: none;">
+                    <button type="button" onclick="document.getElementById('activityPhotos').click()" class="photo-btn">
+                        📷 Ajouter des photos
+                    </button>
+                    <div id="photoPreview" class="photo-preview"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeAddModal()">Annuler</button>
+                <button onclick="addActivity()">➕ Ajouter l'activité</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour afficher les photos en grand -->
+    <div id="photoModal" class="photo-modal">
+        <span class="photo-close" onclick="closePhotoModal()">&times;</span>
+        <div class="photo-modal-content">
+            <button class="photo-nav prev" onclick="prevPhoto()">‹</button>
+            <img id="modalImage" src="" alt="Photo">
+            <button class="photo-nav next" onclick="nextPhoto()">›</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
