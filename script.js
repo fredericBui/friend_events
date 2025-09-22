@@ -420,7 +420,7 @@ function loadActivities() {
                 title: "Soirée pizza et jeux de société",
                 description: "On se retrouve chez Marie pour une soirée détente avec de la pizza et nos jeux préférés",
                 author: "Marie",
-                date: "2025-10-15",
+                date: "2025-08-15",
                 completed: false,
                 createdAt: new Date().toISOString(),
                 photos: []
@@ -431,12 +431,13 @@ function loadActivities() {
                 description: "Balade dans les bois de Vincennes, prévoir des baskets !",
                 author: "Thomas",
                 date: "",
-                completed: true,
+                completed: false,
                 createdAt: new Date().toISOString(),
                 photos: []
             }
         ];
     }
+    autoCompletePastActivities();
     renderActivities();
     updateStats();
 }
@@ -472,3 +473,13 @@ document.addEventListener('click', function(e) {
         });
     }
 });
+
+function autoCompletePastActivities() {
+    activities.forEach(activity => {
+        if (activity.date && activity.date < new Date().toISOString().split('T')[0]) {
+            activity.completed = true;
+        } else {
+            activity.completed = false;
+        }
+    });
+}
