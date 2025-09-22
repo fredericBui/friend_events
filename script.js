@@ -383,7 +383,6 @@ function updateStats() {
     const completed = activities.filter(a => a.completed).length;
     const pending = total - completed;
 
-    document.getElementById('totalCount').textContent = total;
     document.getElementById('completedCount').textContent = completed;
     document.getElementById('pendingCount').textContent = pending;
 }
