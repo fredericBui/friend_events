@@ -339,12 +339,15 @@ function renderActivities() {
                 <div class="activity-meta">
                     ${dateDisplay}
                     <div class="activity-actions" style="flex-wrap: wrap;">
+                        ${activity.completed ? ``: `
                         <button class="btn-edit-date" onclick="toggleDateEdit(${activity.id})">
                             📅 Modifier date
-                        </button>
-                        <button class="add-photo-to-activity" onclick="addPhotoToActivity(${activity.id})">
-                            📷 Ajouter photos
-                        </button>
+                        </button>`}
+                        ${activity.completed ? `
+                            <button class="add-photo-to-activity" onclick="addPhotoToActivity(${activity.id})">
+                                📷 Ajouter photos
+                            </button>
+                        ` : ''}
                         <button class="btn-delete" onclick="deleteActivity(${activity.id})">
                             🗑️ Supprimer
                         </button>
