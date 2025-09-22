@@ -256,16 +256,6 @@ function cancelDateEdit(activityId) {
     editDiv.classList.remove('active');
 }
 
-function toggleComplete(id) {
-    const activity = activities.find(a => a.id === id);
-    if (activity) {
-        activity.completed = !activity.completed;
-        saveActivities();
-        renderActivities();
-        updateStats();
-    }
-}
-
 function deleteActivity(id) {
     if (confirm('Êtes-vous sûr de vouloir supprimer cette activité ?')) {
         activities = activities.filter(a => a.id !== id);
@@ -349,9 +339,6 @@ function renderActivities() {
                 <div class="activity-meta">
                     ${dateDisplay}
                     <div class="activity-actions" style="flex-wrap: wrap;">
-                        <button class="btn-complete" onclick="toggleComplete(${activity.id})">
-                            ${activity.completed ? '↶ Annuler' : '✓ Terminé'}
-                        </button>
                         <button class="btn-edit-date" onclick="toggleDateEdit(${activity.id})">
                             📅 Modifier date
                         </button>
